@@ -1,0 +1,450 @@
+[
+  {
+    "type": "object",
+    "properties": {
+      "fn1": {
+        "type": "array",
+        "items": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "b": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "b"
+            ]
+          }
+        ],
+        "minItems": 1,
+        "maxItems": 2
+      }
+    },
+    "required": [
+      "fn1"
+    ],
+    "$schema": "http://json-schema.org/draft-07/schema#"
+  },
+  {
+    "type": "object",
+    "properties": {
+      "fn1": {
+        "type": "array",
+        "items": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "a": {
+                "type": "number"
+              },
+              "b": {
+                "type": "string"
+              }
+            },
+            "required": [
+              "b",
+              "a"
+            ]
+          }
+        ],
+        "minItems": 1,
+        "maxItems": 2
+      }
+    },
+    "required": [
+      "fn1"
+    ],
+    "$schema": "http://json-schema.org/draft-07/schema#"
+  },
+  {
+    "type": "object",
+    "properties": {
+      "fn1": {
+        "type": "array",
+        "items": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "b": {
+                "type": "string"
+              },
+              "c": {
+                "type": "object",
+                "properties": {
+                  "f": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "f"
+                ]
+              }
+            },
+            "required": [
+              "b",
+              "c"
+            ]
+          }
+        ],
+        "minItems": 1,
+        "maxItems": 2
+      }
+    },
+    "required": [
+      "fn1"
+    ],
+    "$schema": "http://json-schema.org/draft-07/schema#"
+  },
+  {
+    "type": "object",
+    "properties": {
+      "fn1": {
+        "type": "array",
+        "items": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "b": {
+                "type": "string"
+              },
+              "c": {
+                "type": "object",
+                "properties": {
+                  "d": {
+                    "type": "string"
+                  },
+                  "f": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "f",
+                  "d"
+                ]
+              }
+            },
+            "required": [
+              "b",
+              "c"
+            ]
+          }
+        ],
+        "minItems": 1,
+        "maxItems": 2
+      }
+    },
+    "required": [
+      "fn1"
+    ],
+    "$schema": "http://json-schema.org/draft-07/schema#"
+  },
+  {
+    "type": "object",
+    "properties": {
+      "fn1": {
+        "type": "array",
+        "items": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "b": {
+                "type": "string"
+              },
+              "c": {
+                "type": "object",
+                "properties": {
+                  "e": {
+                    "type": "string"
+                  },
+                  "f": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "f",
+                  "e"
+                ]
+              }
+            },
+            "required": [
+              "b",
+              "c"
+            ]
+          }
+        ],
+        "minItems": 1,
+        "maxItems": 2
+      }
+    },
+    "required": [
+      "fn1"
+    ],
+    "$schema": "http://json-schema.org/draft-07/schema#"
+  },
+  {
+    "type": "object",
+    "properties": {
+      "fn1": {
+        "type": "array",
+        "items": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "b": {
+                "type": "string"
+              },
+              "c": {
+                "type": "object",
+                "properties": {
+                  "d": {
+                    "type": "string"
+                  },
+                  "e": {
+                    "type": "string"
+                  },
+                  "f": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "f",
+                  "d",
+                  "e"
+                ]
+              }
+            },
+            "required": [
+              "b",
+              "c"
+            ]
+          }
+        ],
+        "minItems": 1,
+        "maxItems": 2
+      }
+    },
+    "required": [
+      "fn1"
+    ],
+    "$schema": "http://json-schema.org/draft-07/schema#"
+  },
+  {
+    "type": "object",
+    "properties": {
+      "fn1": {
+        "type": "array",
+        "items": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "a": {
+                "type": "number"
+              },
+              "b": {
+                "type": "string"
+              },
+              "c": {
+                "type": "object",
+                "properties": {
+                  "f": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "f"
+                ]
+              }
+            },
+            "required": [
+              "b",
+              "a",
+              "c"
+            ]
+          }
+        ],
+        "minItems": 1,
+        "maxItems": 2
+      }
+    },
+    "required": [
+      "fn1"
+    ],
+    "$schema": "http://json-schema.org/draft-07/schema#"
+  },
+  {
+    "type": "object",
+    "properties": {
+      "fn1": {
+        "type": "array",
+        "items": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "a": {
+                "type": "number"
+              },
+              "b": {
+                "type": "string"
+              },
+              "c": {
+                "type": "object",
+                "properties": {
+                  "d": {
+                    "type": "string"
+                  },
+                  "f": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "f",
+                  "d"
+                ]
+              }
+            },
+            "required": [
+              "b",
+              "a",
+              "c"
+            ]
+          }
+        ],
+        "minItems": 1,
+        "maxItems": 2
+      }
+    },
+    "required": [
+      "fn1"
+    ],
+    "$schema": "http://json-schema.org/draft-07/schema#"
+  },
+  {
+    "type": "object",
+    "properties": {
+      "fn1": {
+        "type": "array",
+        "items": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "a": {
+                "type": "number"
+              },
+              "b": {
+                "type": "string"
+              },
+              "c": {
+                "type": "object",
+                "properties": {
+                  "e": {
+                    "type": "string"
+                  },
+                  "f": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "f",
+                  "e"
+                ]
+              }
+            },
+            "required": [
+              "b",
+              "a",
+              "c"
+            ]
+          }
+        ],
+        "minItems": 1,
+        "maxItems": 2
+      }
+    },
+    "required": [
+      "fn1"
+    ],
+    "$schema": "http://json-schema.org/draft-07/schema#"
+  },
+  {
+    "type": "object",
+    "properties": {
+      "fn1": {
+        "type": "array",
+        "items": [
+          {
+            "type": "number"
+          },
+          {
+            "type": "object",
+            "properties": {
+              "a": {
+                "type": "number"
+              },
+              "b": {
+                "type": "string"
+              },
+              "c": {
+                "type": "object",
+                "properties": {
+                  "d": {
+                    "type": "string"
+                  },
+                  "e": {
+                    "type": "string"
+                  },
+                  "f": {
+                    "type": "string"
+                  }
+                },
+                "required": [
+                  "f",
+                  "d",
+                  "e"
+                ]
+              }
+            },
+            "required": [
+              "b",
+              "a",
+              "c"
+            ]
+          }
+        ],
+        "minItems": 1,
+        "maxItems": 2
+      }
+    },
+    "required": [
+      "fn1"
+    ],
+    "$schema": "http://json-schema.org/draft-07/schema#"
+  }
+]

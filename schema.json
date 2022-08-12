@@ -1,0 +1,50 @@
+{
+  "type": "object",
+  "properties": {
+    "fn1": {
+      "type": "array",
+      "items": [
+        {
+          "type": "number"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "a": {
+              "type": "number"
+            },
+            "b": {
+              "type": "string"
+            },
+            "c": {
+              "type": "object",
+              "properties": {
+                "d": {
+                  "type": "string"
+                },
+                "e": {
+                  "type": "string"
+                },
+                "f": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "f"
+              ]
+            }
+          },
+          "required": [
+            "b"
+          ]
+        }
+      ],
+      "minItems": 1,
+      "maxItems": 2
+    }
+  },
+  "required": [
+    "fn1"
+  ],
+  "$schema": "http://json-schema.org/draft-07/schema#"
+}

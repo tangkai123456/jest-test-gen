@@ -1,0 +1,18 @@
+{
+  "name": "test-case-generator",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "k.tang",
+  "license": "ISC",
+  "dependencies": {
+    "js-combinatorics": "^2.1.1",
+    "json-schema-faker": "^0.5.0-rcv.44",
+    "lodash": "^4.17.21",
+    "ts-morph": "^15.1.0",
+    "typescript-json-schema": "^0.54.0"
+  }
+}
