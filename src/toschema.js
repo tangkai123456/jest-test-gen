@@ -1,12 +1,14 @@
 const { Project, SyntaxKind } = require('ts-morph')
 const { programFromConfig, generateSchema } = require('typescript-json-schema')
-const path = require('path')
+
 const jsf = require('json-schema-faker')
 const fs = require('fs-extra')
 const _ = require('lodash')
 const cb = require('js-combinatorics')
 const { exec, spawn } = require('child_process')
 const glob = require('glob')
+const { resolveTestFile, makeTestDir, mapSchema, batchRun, getLogName, parseLog } = require('./utils')
+
 const cwdPath = process.cwd()
 
 const defaultGenConfig = {
@@ -46,21 +48,21 @@ function gen() {
         const copyFile = file.copy('_copy_' + file.getBaseName(), { overwrite: true })
         makeTestDir(filePath)
 
-        // try {
-        // await makeType(copyFile)
-        // await makeSchema(filePath, copyFile.getFilePath())
-        // await makeMockByOptions(filePath)
-        // await generateMock(filePath)
-        // await genCase(filePath)
-        await genExpect(filePath)
-        await genCaseWithExpect(filePath)
-        await run(filePath)
+        try {
+            await makeType(copyFile)
+            await makeSchema(filePath, copyFile.getFilePath())
+            await makeMockByOptions(filePath)
+            await generateMock(filePath)
+            await genCase(filePath)
+            await genExpect(filePath)
+            await genCaseWithExpect(filePath)
+            await run(filePath)
 
-        copyFile.deleteImmediately()
-        // } catch (error) {
-        //     copyFile.deleteImmediately()
-        //     throw new Error(error)
-        // }
+            copyFile.deleteImmediately()
+        } catch (error) {
+            copyFile.deleteImmediately()
+            throw new Error(error)
+        }
     })
 }
 
@@ -115,37 +117,17 @@ async function makeType(file) {
     await file.save()
 }
 
-function getTestFileDir(file) {
-    const relativeResFile = _.replace(file, cwdPath + '/src', '')
-    const absoluteResFile = path.resolve('./test' + relativeResFile.replace('.', '_'))
-    return absoluteResFile
-}
-
-function resolveTestFile(file, resPath) {
-    return path.resolve(getTestFileDir(file), resPath)
-}
-
-function makeTestDir(file) {
-    fs.ensureDirSync(getTestFileDir(file))
-}
 
 function makeSchema(filePath, copyFilePath) {
     console.log('开始 makeSchema' + filePath)
 
     const typings = glob.sync(`${cwdPath}/src/**/*.d.ts`)
     const program = programFromConfig(`${cwdPath}/tsconfig.json`, typings.concat(copyFilePath))
-    const schema = generateSchema(program, "_TParams", { required: true })
+    const schema = generateSchema(program, "_TParams", { required: true, ignoreErrors: true })
 
     fs.writeFileSync(resolveTestFile(filePath, './schema.json'), JSON.stringify(schema, null, 2), () => { })
 }
 
-async function mapSchema(file, cb) {
-    const mockSchema = await fs.readJSON(resolveTestFile(file, './schema.json'))
-    const res = _.map(mockSchema.properties, (v, key) => {
-        return cb(v, key, mockSchema)
-    })
-    return Promise.all(res)
-}
 
 function makeMockByOptions(file) {
     console.log('开始 makeMockByOptions')
@@ -309,6 +291,7 @@ function generateMock(file) {
     console.log('开始 generateMock')
     fs.ensureDirSync(resolveTestFile(file, './mock_data'))
     return mapSchema(file, async (v, key) => {
+        console.log('genmock-key', key)
         const schema = await fs.readJSON(resolveTestFile(file, `./schema_case/${key}.json`))
         jsf.option({ useDefaultValue: true, useExamplesValue: true })
         const mock = jsf.generate({ list: schema.items, definitions: schema.definitions })
@@ -328,10 +311,10 @@ function genCase(file) {
             ${_.map(mock.list, (item, index) => `
                 it('测试${index}', () => {
                     const data = ${JSON.stringify(item)};
-            
+                    console.log('${getLogName('index')}', ${index})
                     const res = ${key}(...data)
                     // expect
-                    console.log('auto-test-res:', JSON.stringify(res));
+                    console.log('${getLogName('res')}', JSON.stringify(res));
                 });
             `).join('')}
         });
@@ -367,16 +350,9 @@ async function genExpect(file) {
                 if (stderr.startsWith('FAIL')) {
                     reject(stderr)
                 } else {
-                    const expectList = []
-                    stderr.split('\n').forEach(item => {
-                        const str = item.trim()
-                        if (str.startsWith('auto-test-res:')) {
-                            const res = str.replace('auto-test-res:', '').trim()
-                            expectList.push({ res })
-                        }
-                    })
+                    const expectList = parseLog(stderr)
 
-                    console.log('stderr----',expectList)
+                    console.log('stderr----', expectList)
                     await fs.writeFile(resolveTestFile(file, `./expect_data/${item.key}.json`), JSON.stringify(expectList, null, 2))
                     resolve()
                 }
@@ -385,17 +361,6 @@ async function genExpect(file) {
     })
 }
 
-async function batchRun(list, cb) {
-    const batch = _.chunk(list, 2)
-
-    const res = []
-
-    for (let i = 0; i < batch.length; i++) {
-        console.log(`第${i}批`, batch[i])
-        _.concat(res, await Promise.all(batch[i].map(cb)))
-    }
-    return res
-}
 
 function genCaseWithExpect(file) {
     console.log('开始 genCaseWithExpect')

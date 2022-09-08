@@ -1,3 +1,3 @@
-const { gen } = require('../toschema')
+const { gen } = require('../src/toschema')
 
 gen()
