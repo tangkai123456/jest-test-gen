@@ -1,0 +1,22 @@
+#!/usr/bin/env node
+const spawn = require("cross-spawn")
+const arg = require("arg")
+
+const commands = ["gen"]
+
+const args = arg({
+  "--help": Boolean,
+  "--version": Boolean,
+})
+
+const userInputCommand = args._[0]
+const isInternalCommand = commands.includes(userInputCommand)
+
+const nodeArgs = []
+
+const result = spawn.sync(
+  "node",
+  nodeArgs.concat(require.resolve(`../script/${userInputCommand}.js`)),
+  { stdio: "inherit" }
+)
+process.exit(result.status)

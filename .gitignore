@@ -77,3 +77,10 @@ _dist/
 /deps/react-redux/es/
 /deps/react-redux/src/
 package-lock.json
+case_with_expect  
+expect  
+init_case  
+mock_case  
+schema_case
+test/
+_copy_*

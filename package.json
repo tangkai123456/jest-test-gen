@@ -1,18 +1,32 @@
 {
-  "name": "test-case-generator",
+  "name": "jest-test-case-generator",
   "version": "0.0.1",
   "description": "",
   "main": "index.js",
+  "bin": {
+    "jest-test-gen": "./bin/jest-test-gen"
+  },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "jest"
   },
   "author": "k.tang",
   "license": "ISC",
   "dependencies": {
+    "glob": "^8.0.3",
+    "jest-environment-jsdom": "^28.1.3",
     "js-combinatorics": "^2.1.1",
     "json-schema-faker": "^0.5.0-rcv.44",
     "lodash": "^4.17.21",
     "ts-morph": "^15.1.0",
     "typescript-json-schema": "^0.54.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.18.10",
+    "@babel/preset-env": "^7.18.10",
+    "@babel/preset-typescript": "^7.18.6",
+    "babel-jest": "^28.1.3",
+    "fs-extra": "^10.1.0",
+    "jest": "^28.1.3",
+    "ts-json-schema-generator": "^1.0.0"
   }
 }
